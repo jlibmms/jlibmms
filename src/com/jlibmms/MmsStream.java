@@ -52,6 +52,21 @@ public class MmsStream extends InputStream
 		totalLength = MMSX.NATIVE.mmsx_get_length(connection);
 	}
 	
+	public int getLengthInBytes()
+	{
+		return MMSX.NATIVE.mmsx_get_length(connection);
+	}
+	
+	public double getLengthInSeconds()
+	{
+		return MMSX.NATIVE.mmsx_get_time_length(connection);
+	}
+	
+	public boolean isSeekable()
+	{
+		return MMSX.NATIVE.mmsx_get_seekable(connection) > 0;
+	}
+	
 	@Override
 	public void close()
 	{
@@ -62,18 +77,6 @@ public class MmsStream extends InputStream
 	public void finalize()
 	{
 		close();
-	}
-
-	/**
-	 * First argument is the URL to download ("mms://example.com/something.wmv"), second argument is destination filename ("downloadedfile.wmv").
-	 * @param args
-	 * @throws IOException 
-	 * @throws URISyntaxException 
-	 */
-	public static void main(String[] args) throws IOException, URISyntaxException
-	{
-		MmsStream stream = new MmsStream(new URI(args[0]));
-		FileUtils.copyInputStreamToFile(stream, new File(args[1]));
 	}
 
 	@Override

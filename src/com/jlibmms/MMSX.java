@@ -36,7 +36,7 @@ public interface MMSX extends Library
 
 	long mmsx_get_current_pos(Pointer mmsx_t);
 
-	double mmsx_get_time_length(Pointer mmsx_t);
+	double mmsx_get_time_length(Pointer mmsx_t); //TODO: buggy? (is return type correct?)
 
 	int mmsx_get_seekable(Pointer mmsx_t);
 
